@@ -109,6 +109,7 @@ typedef struct _php_imap_message_struct {
 /* Functions */
 
 PHP_MINIT_FUNCTION(imap);
+PHP_MSHUTDOWN_FUNCTION(imap);
 PHP_RINIT_FUNCTION(imap);
 PHP_RSHUTDOWN_FUNCTION(imap);
 PHP_MINFO_FUNCTION(imap);

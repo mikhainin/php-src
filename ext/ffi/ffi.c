@@ -5487,6 +5487,13 @@ ZEND_MINIT_FUNCTION(ffi)
 }
 /* }}} */
 
+ZEND_MSHUTDOWN(ffi) /* {{{ */
+{
+	UNREGISTER_INI_ENTRIES();
+	return SUCCESS;
+}
+/* }}} */
+
 /* {{{ ZEND_RSHUTDOWN_FUNCTION */
 ZEND_RSHUTDOWN_FUNCTION(ffi)
 {
@@ -5615,7 +5622,7 @@ zend_module_entry ffi_module_entry = {
 	"FFI",					/* Extension name */
 	NULL,					/* zend_function_entry */
 	ZEND_MINIT(ffi),		/* ZEND_MINIT - Module initialization */
-	NULL,					/* ZEND_MSHUTDOWN - Module shutdown */
+	ZEND_MSHUTDOWN(ffi),	/* ZEND_MSHUTDOWN - Module shutdown */
 	NULL,					/* ZEND_RINIT - Request initialization */
 	ZEND_RSHUTDOWN(ffi),	/* ZEND_RSHUTDOWN - Request shutdown */
 	ZEND_MINFO(ffi),		/* ZEND_MINFO - Module info */

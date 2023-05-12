@@ -128,7 +128,7 @@ zend_module_entry imap_module_entry = {
 	"imap",
 	ext_functions,
 	PHP_MINIT(imap),
-	NULL,
+	PHP_MSHUTDOWN(imap),
 	PHP_RINIT(imap),
 	PHP_RSHUTDOWN(imap),
 	PHP_MINFO(imap),
@@ -511,6 +511,14 @@ PHP_MINIT_FUNCTION(imap)
 		mail_parameters (NIL, SET_SSHTIMEOUT, 0);
 	}
 
+	return SUCCESS;
+}
+/* }}} */
+
+/* {{{ PHP_MSHUTDOWN_FUNCTION */
+PHP_MSHUTDOWN_FUNCTION(imap)
+{
+	UNREGISTER_INI_ENTRIES();
 	return SUCCESS;
 }
 /* }}} */
